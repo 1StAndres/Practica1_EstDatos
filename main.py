@@ -67,6 +67,7 @@ def menu_investigador():
             print("Generando un archivo txt con el estado de sus solicitudes...")
         elif opcion == "7":
             print("Saliendo del menú investigador...")
+            break
         else:
             print("Opción no válida. Intente nuevamente.")
 #lee archivos empleados y password
@@ -94,6 +95,14 @@ with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as a
                 if contraseña == contraseñas[identificacion]:
                     print("Acceso permitido :D")
                     fallas=0
+                    #verificacion si es investigador o administrador
+                    if rangos[identificacion] == "investigador":
+                        print("Bienvenido investigador")
+                        #punto numero 3
+                        menu_investigador()
+                    else:
+                        print("Bienvenido administrador")
+                        menu_administrador()
                     break
                 else:
                     print("Datos incorrectos")
