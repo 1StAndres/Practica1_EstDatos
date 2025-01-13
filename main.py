@@ -23,6 +23,12 @@ with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as a
                 if contraseña == contraseñas[identificacion]:
                     print("Acceso permitido :D")
                     fallas=0
+                    #verificacion si es investigador o administrador
+                    if rangos[identificacion] == "investigador":
+                        print("Bienvenido investigador")
+                        #punto numero 3
+                    else:
+                        print("Bienvenido administrador")
                     break
                 else:
                     print("Datos incorrectos")
