@@ -1,12 +1,12 @@
 class Usuario:
-  def __init__(self, nombre = "None", id = "None"): 
+  def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir): 
     self._nombre = nombre
     self._id = id
-    self._fecha_nacimiento = "None"
-    self._ciudad_nacimiento = "None"
-    self._tel = "None"
-    self._email = "None"
-    self._dir = "None"
+    self._fecha_nacimiento = fecha_nacimiento
+    self._ciudad_nacimiento = ciudad_nacimiento
+    self._tel = tel
+    self._email = email
+    self._dir = dir
 
   def setNombre(self, nombre):
     self._nombre = nombre
