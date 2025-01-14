@@ -7,7 +7,6 @@ class Investigador(Usuario):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
         self._lista_equipos = []
         self._estado_solicitudes = []
-        #self._archivo_equipos = f"{self.getNombre()} {self.getId()}.txt"
 
     def cargar_equipos(self):
         """Carga los equipos del usuario"""
