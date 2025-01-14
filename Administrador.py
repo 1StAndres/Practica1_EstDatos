@@ -33,8 +33,3 @@ class Administrador(Investigador):
                 print("solicitud desaprobada")#lo puse porque me marcaba error y no me dejaba correr investigador, si necesitan cambiar sientanse libre de hacerlo
             else:
                 print("Por favor copie Aprobado o Desaprobado")
-
-    def revisar_solicitudes_eliminar_(self):
-        ahora = datetime.now().strftime('%d %m %Y %H %M %S')
-
-    #def revisar_solicitudes_eliminar():

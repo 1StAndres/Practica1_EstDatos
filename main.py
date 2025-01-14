@@ -1,3 +1,8 @@
+from Investigador import Investigador
+from Usuario import Usuario
+from Fecha import Fecha
+from Direccion import Direccion
+
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
     while True:
@@ -55,7 +60,7 @@ def menu_investigador():
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
             print("Consultando información...")
-            
+            Investigador.cargar_equipos(user_ejemplo)
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
         elif opcion == "3":
@@ -71,6 +76,11 @@ def menu_investigador():
             break
         else:
             print("Opción no válida. Intente nuevamente.")
+
+#usuario de ejemplo
+user_ejemplo = Usuario("juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
+print(user_ejemplo)
+#inicio del sistema
 #lee archivos empleados y password
 with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as arc_password:
     #diccionario para almacenar contraseñas 
