@@ -19,7 +19,7 @@ class Administrador(Investigador):
             if resultado == "Aprobado":
                 cambio = solicitud[2] + ' ' + solicitud[0] + ' ' +  "Agregar" + ahora
                 Administrador.Control_de_cambio.append(cambio)
-
+                solicitud[3].lista_equipos
                 #informar al investigaro falta
             if resultado == "Desaprobado":
 
