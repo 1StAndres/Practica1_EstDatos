@@ -1,5 +1,7 @@
+from DoubleList import DoubleList
+
 class Equipo:
-    todos_los_equipos = []
+    todos_los_equipos = DoubleList()
     def __init__(self, nombre, placa, fecha, valor):
         self._nombre_del_equipo = nombre
         self._numero_de_placa = placa
