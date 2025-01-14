@@ -7,13 +7,12 @@ class Investigador(Usuario):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
         self._lista_equipos = []
         self._estado_solicitudes = []
-        self._archivo_equipos = f"{self.getNombre()} {self.getId()}.txt"
+        #self._archivo_equipos = f"{self.getNombre()} {self.getId()}.txt"
 
     def cargar_equipos(self):
         """Carga los equipos del usuario"""
-        with open(self._archivo_equipos, "r") as file:
+        with open(f"{self.getNombre()} {self.getId()}.txt", "r") as file:
             self._lista_equipos = [line.strip() for line in file if line.strip()]
-        print(f"Equipos cargados desde {self._archivo_equipos}.")
         
         for equipo in self._lista_equipos:
                 print(equipo)    

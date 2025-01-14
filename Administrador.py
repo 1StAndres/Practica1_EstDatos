@@ -1,7 +1,7 @@
-from Investigador import Investigador
+from Usuario import Usuario
 from datetime import datetime
 
-class Administrador(Investigador):
+class Administrador(Usuario):
 
     solicitudes_nuevo = []
     solicitudes_eliminar = [] 
