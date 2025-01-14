@@ -69,7 +69,7 @@ def menu_investigador():
             mes_c = input("mes de compra del equipo :")
             año_c = input("año de compra del equipo en formato AAAA:")
             v_c = input("valor compra del equipo:")
-            obj_eq = [nom_eq, n_placa, dia_c, mes_c, año_c, v_c]
+            obj_eq = [nom_eq, n_placa, dia_c, mes_c, año_c, v_c] #objeto del parametro de solcitar_nuevo
             Investigador.solicitar_nuevo(user_ejemplo, obj_eq)
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
