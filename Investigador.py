@@ -19,6 +19,7 @@ class Investigador(Usuario):
     def solicitar_nuevo(self, equipo):
         Administrador.solicitudes_nuevo.append(equipo)
     #aca se pide todo el objeto de tipo equipo
+    
     def solicitar_eliminar(self, numero_placa, justificacion):
         solicitud = [str(numero_placa), justificacion, str(self.getId()), self]
         Administrador.solicitudes_eliminar.append(solicitud)

@@ -63,8 +63,19 @@ def menu_investigador():
             Investigador.cargar_equipos(user_ejemplo)
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
+            nom_eq = input("Nombre del equipo:")
+            n_placa = input("ingrese numero de placa del equipo:")
+            dia_c = input("dia de compra del equipo:")
+            mes_c = input("mes de compra del equipo :")
+            año_c = input("año de compra del equipo en formato AAAA:")
+            v_c = input("valor compra del equipo:")
+            obj_eq = [nom_eq, n_placa, dia_c, mes_c, año_c, v_c]
+            Investigador.solicitar_nuevo(user_ejemplo, obj_eq)
         elif opcion == "3":
-            print("Solicitando eliminar equipos de su inventario...")
+            print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
+            num_placa = input("ingrese numero de placa del equipo:")
+            justifi = input("ingrese una justificacion:")
+            Investigador.solicitar_eliminar(user_ejemplo,num_placa,justifi)
         elif opcion == "4":
             print("Consultando el estado de sus solicitudes...")
         elif opcion == "5":
