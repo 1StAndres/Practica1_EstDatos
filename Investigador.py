@@ -25,6 +25,7 @@ class Investigador(Usuario):
         Administrador.solicitudes_nuevo.addLast(solicitud)
 
     #aca se pide todo el objeto de tipo equipo
+    
     def solicitar_eliminar(self, numero_placa, justificacion):
         from Administrador import Administrador
         solicitud = DoubleList()
