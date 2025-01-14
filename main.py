@@ -55,6 +55,7 @@ def menu_investigador():
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
             print("Consultando información...")
+            
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
         elif opcion == "3":

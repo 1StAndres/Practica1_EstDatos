@@ -29,7 +29,7 @@ class Administrador(Investigador):
                 
                 #informar al investigador falta
             if resultado == "Desaprobado":
-
+                print("solicitud desaprobada")#lo puse porque me marcaba error y no me dejaba correr investigador, si necesitan cambiar sientanse libre de hacerlo
             else:
                 print("Por favor copie Aprobado o Desaprobado")
 
