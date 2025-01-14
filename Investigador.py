@@ -13,7 +13,10 @@ class Investigador(Usuario):
         """Carga los equipos del usuario"""
         with open(self._archivo_equipos, "r") as file:
             self._lista_equipos = [line.strip() for line in file if line.strip()]
-        print(f"Equipos cargados desde {self._archivo_equipos}.")    
+        print(f"Equipos cargados desde {self._archivo_equipos}.")
+        
+        for equipo in self._lista_equipos:
+                print(equipo)    
 
     def solicitar_nuevo(self, equipo):
         Administrador.solicitudes_nuevo.append(equipo)
