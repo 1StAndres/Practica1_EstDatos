@@ -1,12 +1,12 @@
+from DoubleList import DoubleList
 from Usuario import Usuario
-from Administrador import Administrador
 
 
 class Investigador(Usuario):
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir): 
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
-        self._lista_equipos = []
-        self._estado_solicitudes = []
+        self._lista_equipos = DoubleList()
+        self._estado_solicitudes = DoubleList()
         self._archivo_equipos = f"{self.getNombre()} {self.getId()}.txt"
 
     def cargar_equipos(self):
@@ -19,11 +19,17 @@ class Investigador(Usuario):
                 print(equipo)    
 
     def solicitar_nuevo(self, equipo):
-        Administrador.solicitudes_nuevo.append(equipo)
+        from Administrador import Administrador
+        Administrador.solicitudes_nuevo.addFirst(equipo)
     #aca se pide todo el objeto de tipo equipo
     def solicitar_eliminar(self, numero_placa, justificacion):
-        solicitud = [str(numero_placa), justificacion, str(self.getId()), self]
-        Administrador.solicitudes_eliminar.append(solicitud)
+        from Administrador import Administrador
+        solicitud = DoubleList()
+        solicitud.addLast(str(numero_placa))
+        solicitud.addLast(justificacion)
+        solicitud.addLast(str(self.getId()))
+        solicitud.addLast(self)
+        Administrador.solicitudes_eliminar.addFirst(solicitud)
     #aca se pide una justificacion, y un solo atributo del objeto equipo
     
     def getLista_equipos(self):

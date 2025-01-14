@@ -114,3 +114,14 @@ class DoubleList:
                 self._size += 1
         else:
             self.addFirst()
+
+    def __iter__(self):
+        self._current = self._head
+        return self
+
+    def __next__(self):
+        if self._current is None:
+            raise StopIteration
+        data = self._current.getData()
+        self._current = self._current.getNext()
+        return data
