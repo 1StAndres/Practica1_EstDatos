@@ -21,7 +21,8 @@ class Administrador(Investigador):
                 cambio = str(solicitud.first().getNext().getData().getId()) + " " + str(solicitud.first().getData().getPlaca()) + " " + "Agrega"
                 Administrador.control_de_cambio.addLast(cambio)
                 solicitud.first().getNext().getData().getLista_equipos().addLast(solicitud.first().getData())
-            
+                #poner a lo mejor un atributo más para investigador, que se vacíe cada vez 
+                #que se printee un mensaje indicandole al inves el resultado de su solicitud
             if resultado == "Desaprobado":
                 print("Solicitud desaprobada")
             else:
