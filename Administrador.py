@@ -24,9 +24,10 @@ class Administrador(Investigador):
                 cambio = solicitud[2] + ' ' + solicitud[0] + ' ' +  "Eliminar" + ahora
                 Administrador.Control_de_cambio.append(cambio)
                 for equipo in solicitud[3].getLista_equipos():
-                    if str(equipo.getPlaca()) == solicitud[]
+                    if str(equipo.getPlaca()) == solicitud[0]:
+                        solicitud[3].getLista_equipos().remove(equipo)
                 
-                #informar al investigaro falta
+                #informar al investigador falta
             if resultado == "Desaprobado":
 
             else:
