@@ -13,13 +13,19 @@ class Administrador(Investigador):
     
     def revisar_solicitudes_nuevo(self):
         ahora = datetime.now().strftime('%d %m %Y %H %M %S')
-        for solicitud in Administrador.solicitudes_nuevo:
-            print("Equipo con número de placa:", solicitud[0], ", Razón: ", solicitud[1])
+
+
+    def revisar_solicitudes_eliminar(self):
+        ahora = datetime.now().strftime('%d %m %Y %H %M %S')
+        for solicitud in Administrador.solicitudes_eliminar:
+            print("Equipo con número de placa:", solicitud[0], ", Razón para eliminarlo: ", solicitud[1])
             resultado = input("A continuación escriba Aprobado o Desaprobado")
             if resultado == "Aprobado":
-                cambio = solicitud[2] + ' ' + solicitud[0] + ' ' +  "Agregar" + ahora
+                cambio = solicitud[2] + ' ' + solicitud[0] + ' ' +  "Eliminar" + ahora
                 Administrador.Control_de_cambio.append(cambio)
-                solicitud[3].lista_equipos
+                for equipo in solicitud[3].getLista_equipos():
+                    if str(equipo.getPlaca()) == solicitud[]
+                
                 #informar al investigaro falta
             if resultado == "Desaprobado":
 

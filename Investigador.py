@@ -5,8 +5,8 @@ from Administrador import Administrador
 class Investigador(Usuario):
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir): 
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
-        self._lista_equipos = "None"
-        self._estado_solicitudes = "None"
+        self._lista_equipos = []
+        self._estado_solicitudes = []
 
     def solicitar_nuevo(self, equipo):
         Administrador.solicitudes_nuevo.append(equipo)
