@@ -108,7 +108,7 @@ user_ejemplo = Usuario("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Med
 
 direc = Direccion()
 direc.setAll("tr45", "4S-73", "Poblado", "Medellin", "null", "null")
-user_admin = Usuario("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
+user_admin = Investigador("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
 print(user_admin)
 #inicio del sistema
 #lee archivos empleados y password
