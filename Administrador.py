@@ -89,11 +89,19 @@ class Administrador(Investigador):
 
     #entrabajo
     def generarInventariotxt(self,identificacion):
-        with open(f"info_inventario{identificacion}","w") as fi:
-            fi.write()
+        lista = DoubleList()
+        with open("InventarioGeneral.txt","r")as archivo:
+            for linea in archivo:
+                if identificacion in linea:
+                    lista.addLast(linea)
+        with open(f"info_inventario{identificacion}.txt","w") as fi:
+            lineaActual = lista.first()
+            while lineaActual:               
+                fi.write(lineaActual.getData().split(identificacion, 1)[1].strip())
+                lineaActual = lineaActual.getNext()
     
     def generarInventarioCompletotxt(self):
-        with open("InventarioGeneralcopy","w") as fi:
+        with open("InventarioGeneral.txt","w") as fi:
             fi.write()
     
     def generarControlDeCambiostxt(self):
