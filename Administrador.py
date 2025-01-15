@@ -86,6 +86,10 @@ class Administrador(Investigador):
         new_user = Usuario(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
         with open("Empleados.txt", "a") as f:
             f.write(f"{new_user.__str__()}")
+        contr_nue = input("Contraseña para el nuevo usuario:")
+        rol_nue = input("Rol que ocupara el nuevo usuario:")
+        with open("Password.txt", "a") as r:
+            r.write(f"{id_nue} {contr_nue} {rol_nue} ") 
 
     #entrabajo
     def generarInventariotxt(self,identificacion):
