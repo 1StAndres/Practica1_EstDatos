@@ -2,6 +2,7 @@ from Investigador import Investigador
 from Usuario import Usuario
 from Fecha import Fecha
 from Direccion import Direccion
+from Administrador import Administrador
 
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
@@ -21,8 +22,10 @@ def menu_administrador():
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
             print("Consultando información...")
+            Investigador.cargar_equipos(user_admin)
         elif opcion == "2":
-            print("Registrando Usuario...") 
+            print("Registrando Usuario...")
+            Administrador.Registrar_Usuario(user_admin)
         elif opcion == "3":
             print("Eliminando usuarios...")
         elif opcion == "4":
@@ -32,13 +35,18 @@ def menu_administrador():
         elif opcion == "6":
             print("responder las solicitudes eliminar")
         elif opcion == "7":
-            print("generar un archivo txt con la información del inventario de un investigador en específico")
+            print("Generando un archivo txt con la información del inventario de un investigador en específico")
+            idInv = input("ingrese el id del investigador")
+            Administrador.generarInventariotxt(idInv)
         elif opcion == "8":
-            print("archivo txt con la información de todo el inventario del centro discriminado por investigador")
+            print("Generando archivo de texto con la información de todo el inventario del centro de investigacion...")
+            Administrador.generarInventarioCompletotxt()
         elif opcion == "9":
-            print("un archivo de texto con el control de cambios")
+            print("Generando archivo de texto con el control de cambios")
+            Administrador.generarControlDeCambiostxt()
         elif opcion == "10":
-            print("un archivo de texto para cada tipo de solicitud pendiente por responder (agregar (“Solicitudes_agregar.txt”) o eliminar (“Solicitudes_eliminar.txt”)).")
+            print("Generando archivo de texto para cada tipo de solicitud pendiente por responder...")
+            Administrador.generarSolicitudesPendientestxt()
         elif opcion == "11":
             print("Saliendo del menú administrador...")
             break
@@ -80,8 +88,10 @@ def menu_investigador():
             print("Consultando el estado de sus solicitudes...")
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
+            Investigador.generarEquipotxt()
         elif opcion == "6":
             print("Generando un archivo txt con el estado de sus solicitudes...")
+            Investigador.generarEstadoSolicitudestxt()
         elif opcion == "7":
             print("Saliendo del menú investigador...")
             break
@@ -89,8 +99,13 @@ def menu_investigador():
             print("Opción no válida. Intente nuevamente.")
 
 #usuario de ejemplo
-user_ejemplo = Usuario("juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
-print(user_ejemplo)
+user_ejemplo = Usuario("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
+#print(user_ejemplo)
+
+direc = Direccion()
+direc.setAll("tr45", "4S-73", "Poblado", "Medellin", "null", "null")
+user_admin = Usuario("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
+print(user_admin)
 #inicio del sistema
 #lee archivos empleados y password
 with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as arc_password:
