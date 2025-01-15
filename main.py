@@ -2,6 +2,7 @@ from Investigador import Investigador
 from Usuario import Usuario
 from Fecha import Fecha
 from Direccion import Direccion
+from Administrador import Administrador
 
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
@@ -21,8 +22,10 @@ def menu_administrador():
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
             print("Consultando información...")
+            Investigador.cargar_equipos(user_admin)
         elif opcion == "2":
-            print("Registrando Usuario...") 
+            print("Registrando Usuario...")
+            Administrador.Registrar_Usuario(user_admin)
         elif opcion == "3":
             print("Eliminando usuarios...")
         elif opcion == "4":
@@ -90,7 +93,12 @@ def menu_investigador():
 
 #usuario de ejemplo
 user_ejemplo = Usuario("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
-print(user_ejemplo)
+#print(user_ejemplo)
+
+direc = Direccion()
+direc.setAll("tr45", "4S-73", "Poblado", "Medellin", "null", "null")
+user_admin = Usuario("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
+print(user_admin)
 #inicio del sistema
 #lee archivos empleados y password
 with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as arc_password:
