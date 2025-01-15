@@ -70,3 +70,19 @@ class Administrador(Investigador):
         with open("Empleados.txt", "a") as f:
             f.write(f"{new_user.__str__()}")
 
+    #entrabajo
+    def generarInventariotxt(self,identificacion):
+        with open(f"info_inventario{identificacion}","w") as fi:
+            fi.write()
+    
+    def generarInventarioCompletotxt(self):
+        with open("info_InventarioCompleto","w") as fi:
+            fi.write()
+    
+    def generarControlDeCambiostxt(self):
+        with open("info_Controldecambios","w") as fi:
+            fi.write()
+    
+    def generarSolicitudesPendientestxt(self):
+        with open("info_SolicitudesPendientes","w") as fi:
+            fi.write()

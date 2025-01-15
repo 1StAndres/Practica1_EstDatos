@@ -47,4 +47,12 @@ class Investigador(Usuario):
     
     def setEstado_solicitudes(self):
         self._estado_solicitudes
+
+    # Entrabajo
+    def generarEquipotxt(self):
+        with open("info_inventario","w") as fi:
+            fi.write(self._lista_equipos)
     
+    def generarEstadoSolicitudestxt(self):
+        with open("info_solicitudes","w") as fi:
+            fi.write(self._estado_solicitudes)    
