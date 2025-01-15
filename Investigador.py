@@ -1,7 +1,6 @@
 from DoubleList import DoubleList
 from Usuario import Usuario
 
-
 class Investigador(Usuario):
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir): 
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
@@ -23,6 +22,11 @@ class Investigador(Usuario):
         solicitud.addLast(equipo)
         solicitud.addLast(self)
         Administrador.solicitudes_nuevo.addLast(solicitud)
+        estado = DoubleList()
+        estado.addLast(equipo.getNombre())
+        estado.addLast("Pendiente (Agregar)")
+        self._estado_solicitudes.addLast(estado)
+        
 
     #aca se pide todo el objeto de tipo equipo
     
@@ -34,6 +38,10 @@ class Investigador(Usuario):
         solicitud.addLast(str(self.getId()))
         solicitud.addLast(self)
         Administrador.solicitudes_eliminar.addFirst(solicitud)
+        estado = DoubleList()
+        estado.addLast(numero_placa)
+        estado.addLast("Pendiente (Eliminar)")
+        self._estado_solicitudes.addLast(estado)
     #aca se pide una justificacion, y un solo atributo del objeto equipo
     
     def getLista_equipos(self):
