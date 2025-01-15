@@ -89,7 +89,7 @@ def menu_investigador():
             print("Opción no válida. Intente nuevamente.")
 
 #usuario de ejemplo
-user_ejemplo = Usuario("juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
+user_ejemplo = Usuario("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
 print(user_ejemplo)
 #inicio del sistema
 #lee archivos empleados y password
