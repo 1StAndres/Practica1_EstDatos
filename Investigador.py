@@ -19,7 +19,11 @@ class Investigador(Usuario):
 
     def solicitar_nuevo(self, equipo):
         from Administrador import Administrador
-        Administrador.solicitudes_nuevo.addFirst(equipo)
+        solicitud = DoubleList()
+        solicitud.addLast(equipo)
+        solicitud.addLast(self)
+        Administrador.solicitudes_nuevo.addLast(solicitud)
+
     #aca se pide todo el objeto de tipo equipo
     
     def solicitar_eliminar(self, numero_placa, justificacion):
