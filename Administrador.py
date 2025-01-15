@@ -87,5 +87,13 @@ class Administrador(Investigador):
                 cambio_actual = cambio_actual.getNext()
     
     def generarSolicitudesPendientestxt(self):
-        with open("info_SolicitudesPendientes","w") as fi:
-            fi.write()
+        with open("info_SolicitudesPendientes", "w") as fi:
+            solicitud_actual = self.solicitudes_nuevo.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
+
+            solicitud_actual = self.solicitudes_eliminar.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
