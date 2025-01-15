@@ -71,7 +71,8 @@ def menu_investigador():
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
             print("Consultando información...")
-            Investigador.cargar_equipos(user_ejemplo)
+            #Investigador.cargar_equipos(user_ejemplo)
+            user_ejemplo.cargar_equipos()
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
             nombre = input("Nombre del equipo:")
@@ -103,7 +104,7 @@ def menu_investigador():
             print("Opción no válida. Intente nuevamente.")
 
 #usuario de ejemplo
-user_ejemplo = Usuario("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
+user_ejemplo = Investigador("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
 #print(user_ejemplo)
 
 direc = Direccion()
