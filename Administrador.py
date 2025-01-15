@@ -80,7 +80,7 @@ class Administrador(Investigador):
             fi.write()
     
     def generarControlDeCambiostxt(self):
-        with open("info_ControlDeCambios.txt", "w") as fi:
+        with open("Control_de_cambios.txt", "w") as fi:
             cambio_actual = self.control_de_cambio.first()
             while cambio_actual:
                 fi.write(cambio_actual.getData() + "\n")
