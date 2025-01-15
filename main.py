@@ -3,6 +3,7 @@ from Usuario import Usuario
 from Fecha import Fecha
 from Direccion import Direccion
 from Administrador import Administrador
+from Equipo import Equipo
 
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
@@ -27,13 +28,15 @@ def menu_administrador():
             print("Registrando Usuario...")
             Administrador.Registrar_Usuario(user_admin)
         elif opcion == "3":
+            #falta
             print("Eliminando usuarios...")
         elif opcion == "4":
+            #falta
             print("cambiando contraseñas")
         elif opcion == "5":
-            print("responder las solicitudes agregar")
+            user_admin.revisar_solicitudes_nuevo()
         elif opcion == "6":
-            print("responder las solicitudes eliminar")
+            user_admin.revisar_solicitudes_eliminar()
         elif opcion == "7":
             print("Generando un archivo txt con la información del inventario de un investigador en específico")
             idInv = input("ingrese el id del investigador")
@@ -71,14 +74,15 @@ def menu_investigador():
             Investigador.cargar_equipos(user_ejemplo)
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
-            nom_eq = input("Nombre del equipo:")
-            n_placa = input("ingrese numero de placa del equipo:")
-            dia_c = input("dia de compra del equipo:")
-            mes_c = input("mes de compra del equipo :")
-            año_c = input("año de compra del equipo en formato AAAA:")
-            v_c = input("valor compra del equipo:")
-            obj_eq = [nom_eq, n_placa, dia_c, mes_c, año_c, v_c] #objeto del parametro de solcitar_nuevo
-            Investigador.solicitar_nuevo(user_ejemplo, obj_eq)
+            nombre = input("Nombre del equipo:")
+            placa = input("ingrese numero de placa del equipo:")
+            dia = input("dia de compra del equipo:")
+            mes = input("mes de compra del equipo :")
+            año = input("año de compra del equipo en formato AAAA:")
+            fecha = Fecha(dia, mes, año)
+            valor = input("valor compra del equipo:")
+            equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
+            Investigador.solicitar_nuevo(user_ejemplo, equipo_nuevo)
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
             num_placa = input("ingrese numero de placa del equipo:")
