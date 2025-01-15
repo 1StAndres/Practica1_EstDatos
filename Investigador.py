@@ -54,5 +54,5 @@ class Investigador(Usuario):
             fi.write(self._lista_equipos)
     
     def generarEstadoSolicitudestxt(self):
-        with open("info_solicitudes","w") as fi:
+        with open("estado_solicitudes","w") as fi:
             fi.write(self._estado_solicitudes)    

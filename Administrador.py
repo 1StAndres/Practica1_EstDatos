@@ -76,12 +76,15 @@ class Administrador(Investigador):
             fi.write()
     
     def generarInventarioCompletotxt(self):
-        with open("info_InventarioCompleto","w") as fi:
+        with open("InventarioGeneralcopy","w") as fi:
             fi.write()
     
     def generarControlDeCambiostxt(self):
-        with open("info_Controldecambios","w") as fi:
-            fi.write()
+        with open("info_ControlDeCambios.txt", "w") as fi:
+            cambio_actual = self.control_de_cambio.first()
+            while cambio_actual:
+                fi.write(cambio_actual.getData() + "\n")
+                cambio_actual = cambio_actual.getNext()
     
     def generarSolicitudesPendientestxt(self):
         with open("info_SolicitudesPendientes","w") as fi:
