@@ -35,13 +35,18 @@ def menu_administrador():
         elif opcion == "6":
             print("responder las solicitudes eliminar")
         elif opcion == "7":
-            print("generar un archivo txt con la información del inventario de un investigador en específico")
+            print("Generando un archivo txt con la información del inventario de un investigador en específico")
+            idInv = input("ingrese el id del investigador")
+            Administrador.generarInventariotxt(idInv)
         elif opcion == "8":
-            print("archivo txt con la información de todo el inventario del centro discriminado por investigador")
+            print("Generando archivo de texto con la información de todo el inventario del centro de investigacion...")
+            Administrador.generarInventarioCompletotxt()
         elif opcion == "9":
-            print("un archivo de texto con el control de cambios")
+            print("Generando archivo de texto con el control de cambios")
+            Administrador.generarControlDeCambiostxt()
         elif opcion == "10":
-            print("un archivo de texto para cada tipo de solicitud pendiente por responder (agregar (“Solicitudes_agregar.txt”) o eliminar (“Solicitudes_eliminar.txt”)).")
+            print("Generando archivo de texto para cada tipo de solicitud pendiente por responder...")
+            Administrador.generarSolicitudesPendientestxt()
         elif opcion == "11":
             print("Saliendo del menú administrador...")
             break
@@ -83,8 +88,10 @@ def menu_investigador():
             print("Consultando el estado de sus solicitudes...")
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
+            Investigador.generarEquipotxt()
         elif opcion == "6":
             print("Generando un archivo txt con el estado de sus solicitudes...")
+            Investigador.generarEstadoSolicitudestxt()
         elif opcion == "7":
             print("Saliendo del menú investigador...")
             break
