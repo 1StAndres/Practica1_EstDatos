@@ -12,15 +12,10 @@ class Administrador(Investigador):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
     
     def revisar_solicitudes_nuevo(self):
-        print("entró a revisar_solicitudes_nuevo")
-        if Investigador.solicitudes_nuevo.isEmpty():
-            print("Lista vacía")
-        else:
-            print("Lista llena")
         ahora = datetime.now().strftime('%d %m %Y %H %M %S')
         for solicitud in Investigador.solicitudes_nuevo:
             print("El Investigador:", solicitud.first().getNext().getData().getNombre(), "quiere solitictar un nuevo equipo: ", solicitud.first().getData().getNombre(), "con valor: ", str(solicitud.first().getData().getValor()))
-            resultado = input("A continuación escriba Aprobado o Desaprobado")
+            resultado = input("A continuación escriba Aprobado o Desaprobado: ")
             if resultado == "Aprobado":
                 cambio = str(solicitud.first().getNext().getData().getId()) + " " + str(solicitud.first().getData().getPlaca()) + " " + "Agrega" + ahora
                 Administrador.control_de_cambio.addLast(cambio)
