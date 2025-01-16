@@ -89,7 +89,8 @@ def menu_investigador():
             justifi = input("ingrese una justificacion:")
             user_ejemplo.solicitar_eliminar(num_placa,justifi)
         elif opcion == "4":
-            print("Consultando el estado de sus solicitudes...")
+            for estado in user_ejemplo.getEstado_solicitudes():
+                print("xd")
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
             Investigador.generarEquipotxt()
