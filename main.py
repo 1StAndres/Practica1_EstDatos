@@ -24,15 +24,16 @@ def menu_administrador():
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
             print("Consultando información...")
-            Investigador.cargar_equipos(user_admin)
+            user_admin.cargar_equipos()
         elif opcion == "2":
+            user_admin.Registrar_Usuario()
             print("Registrando Usuario...")
-            Administrador.Registrar_Usuario(user_admin)
         elif opcion == "3":
-            #falta
+            user_admin.Eliminar_usuario()
             print("Eliminando usuarios...")
         elif opcion == "4":
-            #falta
+            #En proceso
+            user_admin.Cambiar_contraseña()
             print("cambiando contraseñas")
         elif opcion == "5":
             user_admin.revisar_solicitudes_nuevo()
@@ -45,7 +46,9 @@ def menu_administrador():
             Administrador.generarInventariotxt(idInv)
         elif opcion == "8":
             print("Generando archivo de texto con la información de todo el inventario del centro de investigacion...")
-            Administrador.generarInventarioCompletotxt()
+            #listaEmpleados = DoubleList() faltan los empleados cargados del punto 1
+            #listaEmpleados.addLast()
+            #Administrador.generarInventarioCompletotxt(listaEmpleados)
         elif opcion == "9":
             print("Generando archivo de texto con el control de cambios")
             Administrador.generarControlDeCambiostxt()
@@ -80,7 +83,6 @@ def menu_investigador():
             print("Consultando información...")
             user_ejemplo.cargar_equipos()
         elif opcion == "2":
-            print("Solicitando agregar nuevos equipos...")
             nombre = input("Nombre del equipo:")
             placa = input("ingrese numero de placa del equipo:")
             dia = input("dia de compra del equipo:")
@@ -91,21 +93,14 @@ def menu_investigador():
             equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
             equipo_nuevo.setUsuario(user_ejemplo)
             user_ejemplo.solicitar_nuevo(equipo_nuevo)
-            #solicitud = DoubleList()
-            #solicitud.addLast(equipo_nuevo)
-            #solicitud.addLast(user_ejemplo)
-            #Administrador.solicitudes_nuevo.addLast(solicitud)
+
+            print("Solicitando agregar nuevos equipos...")
+
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
             numero_placa = input("ingrese numero de placa del equipo:")
             justificacion = input("ingrese una justificacion:")
             user_ejemplo.solicitar_eliminar(numero_placa,justificacion)
-            #solicitud = DoubleList()
-            #solicitud.addLast(str(numero_placa))
-            #solicitud.addLast(justificacion)
-            #solicitud.addLast(str(user_ejemplo.getId()))
-            #solicitud.addLast(user_ejemplo)
-            #Administrador.solicitudes_eliminar.addFirst(solicitud)
         elif opcion == "4":
             for estado in Investigador.estado_solicitudes_general:
                 if user_ejemplo.getNombre() == estado.first().getNext().getNext().getData():

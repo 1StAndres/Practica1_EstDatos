@@ -82,8 +82,8 @@ class Administrador(Investigador):
         nomen = input("Nomenclatura:")
         bar = input("Barrio:")
         ciu = input("Ciudad:")
-        edi = input("Nombre del edificio o urbanizacion (en caso de no aplicar omitir pulsando ENTER):")
-        apa = input("Numero del apartamento o casa (en caso de no aplicar omitir pulsando ENTER):")
+        edi = input("Nombre del edificio o urbanizacion (en caso de no aplicar escriba null):")
+        apa = input("Numero del apartamento o casa (en caso de no aplicar escriba null):")
         dir_user = Direccion()
         dir_user.setAll(calle, nomen, bar, ciu, edi, apa)
         new_user = Investigador(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
@@ -94,6 +94,39 @@ class Administrador(Investigador):
         with open("Password.txt", "a") as r:
             r.write(f"{id_nue} {contr_nue} {rol_nue} ") 
 
+    def Eliminar_usuario(self):        
+        id_eli = input("Ingrese identificacion del usuario a eliminar:")
+        ##Elimina usuario en password txt
+        with open("Password.txt", "r") as f:
+            lineas = f.readlines()
+            lineas_fil = [linea for linea in lineas if not linea.startswith(id_eli + " ")]
+        with open("Password.txt", "w") as f:
+            f.writelines(lineas_fil)  
+            ##Elimina usuario en empleados txt
+        with open("Empleados.txt","r") as r:
+            line = r.readlines()
+            line_fil = [linea for linea in line if linea.split()[1] != id_eli]  
+        with open("Empleados.txt", "w") as r:
+            r.writelines(line_fil)
+
+    def Cambiar_contraseña(self):
+        Id_contra_chance = input("Ingrese el id del usuario a cambiar contraseña:")
+        contra_chance = input("Escriba la nueva contraseña:")
+        with open("Password.txt", "r") as f:
+            lineas = f.readlines()
+
+    # Modificar la línea correspondiente al usuario
+        lineas_modificadas = []
+        for linea in lineas:
+            partes = linea.strip().split()
+            if partes[0] == Id_contra_chance: 
+                partes[1] = contra_chance 
+                lineas_modificadas.append(" ".join(partes) + "\n")
+            else:
+                lineas_modificadas.append(linea)
+
+        with open("Password.txt", "w") as f:
+            f.writelines(lineas_modificadas)                  
     #entrabajo
     def generarInventariotxt(self,identificacion):
         lista = DoubleList()
