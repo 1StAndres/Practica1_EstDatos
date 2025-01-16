@@ -71,7 +71,6 @@ def menu_investigador():
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
             print("Consultando información...")
-            #Investigador.cargar_equipos(user_ejemplo)
             user_ejemplo.cargar_equipos()
         elif opcion == "2":
             print("Solicitando agregar nuevos equipos...")
@@ -83,12 +82,12 @@ def menu_investigador():
             fecha = Fecha(dia, mes, año)
             valor = input("valor compra del equipo:")
             equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
-            Investigador.solicitar_nuevo(user_ejemplo, equipo_nuevo)
+            user_ejemplo.solicitar_nuevo(equipo_nuevo)
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
             num_placa = input("ingrese numero de placa del equipo:")
             justifi = input("ingrese una justificacion:")
-            Investigador.solicitar_eliminar(user_ejemplo,num_placa,justifi)
+            user_ejemplo.solicitar_eliminar(num_placa,justifi)
         elif opcion == "4":
             for estado in user_ejemplo.getEstado_solicitudes():
                 print(estado.first().getData())
@@ -111,7 +110,7 @@ user_ejemplo = Investigador("Juan-Perez", "24567898", Fecha("12", "10", "1980"),
 
 direc = Direccion()
 direc.setAll("tr45", "4S-73", "Poblado", "Medellin", "null", "null")
-user_admin = Investigador("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
+user_admin = Administrador("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
 print(user_admin)
 #inicio del sistema
 #lee archivos empleados y password

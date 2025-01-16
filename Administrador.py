@@ -86,14 +86,26 @@ class Administrador(Investigador):
         new_user = Usuario(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
         with open("Empleados.txt", "a") as f:
             f.write(f"{new_user.__str__()}")
+        contr_nue = input("Contraseña para el nuevo usuario:")
+        rol_nue = input("Rol que ocupara el nuevo usuario:")
+        with open("Password.txt", "a") as r:
+            r.write(f"{id_nue} {contr_nue} {rol_nue} ") 
 
     #entrabajo
     def generarInventariotxt(self,identificacion):
-        with open(f"info_inventario{identificacion}","w") as fi:
-            fi.write()
+        lista = DoubleList()
+        with open("InventarioGeneral.txt","r")as archivo:
+            for linea in archivo:
+                if identificacion in linea:
+                    lista.addLast(linea)
+        with open(f"info_inventario{identificacion}.txt","w") as fi:
+            lineaActual = lista.first()
+            while lineaActual:               
+                fi.write(lineaActual.getData().split(identificacion, 1)[1].strip())
+                lineaActual = lineaActual.getNext()
     
     def generarInventarioCompletotxt(self):
-        with open("InventarioGeneralcopy","w") as fi:
+        with open("InventarioGeneral.txt","w") as fi:
             fi.write()
     
     def generarControlDeCambiostxt(self):
@@ -104,5 +116,13 @@ class Administrador(Investigador):
                 cambio_actual = cambio_actual.getNext()
     
     def generarSolicitudesPendientestxt(self):
-        with open("info_SolicitudesPendientes","w") as fi:
-            fi.write()
+        with open("info_SolicitudesPendientes", "w") as fi:
+            solicitud_actual = self.solicitudes_nuevo.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
+
+            solicitud_actual = self.solicitudes_eliminar.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
