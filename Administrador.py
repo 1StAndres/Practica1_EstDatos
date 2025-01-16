@@ -104,9 +104,47 @@ class Administrador(Investigador):
                 fi.write(lineaActual.getData().split(identificacion, 1)[1].strip())
                 lineaActual = lineaActual.getNext()
     
-    def generarInventarioCompletotxt(self):
-        with open("InventarioGeneral.txt","w") as fi:
-            fi.write()
+    def generarInventarioCompletotxt(self, listaEmpleados):
+    # Abre el archivo para escritura
+        with open("InventarioGeneral.txt", "w") as fi:
+            # Itera sobre la lista de empleados
+            empleado_actual = listaEmpleados.first()
+            while empleado_actual:
+                # Obtén la lista doble de equipos del empleado actual
+                lista_equipos = empleado_actual._lista_equipos
+                
+                # Ordenar la lista doblemente enlazada in-place según el último número de cada cadena
+                if lista_equipos.first() and lista_equipos.first().getNext():
+                    self.ordenarDoubleList(lista_equipos)
+                
+                # Escribir los datos ordenados de la lista en el archivo
+                equipo_actual = lista_equipos.first()
+                while equipo_actual:
+                    fi.write(equipo_actual.getData() + "\n")
+                    equipo_actual = equipo_actual.getNext()
+                
+                # Pasa al siguiente empleado
+                empleado_actual = listaEmpleados.getNext()
+
+    def ordenarDoubleList(self, lista):
+        # Implementación de un algoritmo de ordenamiento para una lista doblemente enlazada
+        cambiado = True
+        while cambiado:
+            cambiado = False
+            actual = lista.first()
+            while actual and actual.getNext():
+                siguiente = actual.getNext()
+                # Comparar el último número de las cadenas
+                valor_actual = int(actual.getData().split()[-1])
+                valor_siguiente = int(siguiente.getData().split()[-1])
+                if valor_actual > valor_siguiente:
+                    # Intercambiar los valores de los nodos
+                    actual_data = actual.getData()
+                    siguiente_data = siguiente.getData()
+                    actual.setData(siguiente_data)
+                    siguiente.setData(actual_data)
+                    cambiado = True
+                actual = siguiente
     
     def generarControlDeCambiostxt(self):
         with open("Control_de_cambios.txt", "w") as fi:
