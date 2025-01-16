@@ -93,11 +93,18 @@ class Administrador(Investigador):
 
     def Eliminar_usuario(self):        
         id_eli = input("Ingrese identificacion del usuario a eliminar:")
+        ##Elimina usuario en password txt
         with open("Password.txt", "r") as f:
             lineas = f.readlines()
             lineas_fil = [linea for linea in lineas if not linea.startswith(id_eli + " ")]
         with open("Password.txt", "w") as f:
-            f.writelines(lineas_fil)    
+            f.writelines(lineas_fil)  
+            ##Elimina usuario en empleados txt
+        with open("Empleados.txt","r") as r:
+            line = r.readlines()
+            line_fil = [linea for linea in line if not linea.startswith(id_eli + " ")]  
+        with open("Empleados.txt", "w") as r:
+            r.writelines(line_fil)          
     #entrabajo
     def generarInventariotxt(self,identificacion):
         lista = DoubleList()

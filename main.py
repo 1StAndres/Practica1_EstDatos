@@ -22,15 +22,15 @@ def menu_administrador():
         print("11. Salir")
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
-            print("Consultando información...")
             user_admin.cargar_equipos()
+            print("Consultando información...")
         elif opcion == "2":
-            print("Registrando Usuario...")
             user_admin.Registrar_Usuario()
+            print("Registrando Usuario...")
         elif opcion == "3":
             #falta
-            print("Eliminando usuarios...")
             user_admin.Eliminar_usuario()
+            print("Eliminando usuarios...")
         elif opcion == "4":
             #falta
             print("cambiando contraseñas")
@@ -73,10 +73,9 @@ def menu_investigador():
         opcion = input("Seleccione una opción: ")
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
-            print("Consultando información...")
             user_ejemplo.cargar_equipos()
+            print("Consultando información...")
         elif opcion == "2":
-            print("Solicitando agregar nuevos equipos...")
             nombre = input("Nombre del equipo:")
             placa = input("ingrese numero de placa del equipo:")
             dia = input("dia de compra del equipo:")
@@ -86,6 +85,7 @@ def menu_investigador():
             valor = input("valor compra del equipo:")
             equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
             user_ejemplo.solicitar_nuevo(equipo_nuevo)
+            print("Solicitando agregar nuevos equipos...")
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
             num_placa = input("ingrese numero de placa del equipo:")
