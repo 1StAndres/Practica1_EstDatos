@@ -23,13 +23,14 @@ def menu_administrador():
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
             print("Consultando información...")
-            Investigador.cargar_equipos(user_admin)
+            user_admin.cargar_equipos()
         elif opcion == "2":
             print("Registrando Usuario...")
-            Administrador.Registrar_Usuario(user_admin)
+            user_admin.Registrar_Usuario()
         elif opcion == "3":
             #falta
             print("Eliminando usuarios...")
+            user_admin.Eliminar_usuario()
         elif opcion == "4":
             #falta
             print("cambiando contraseñas")

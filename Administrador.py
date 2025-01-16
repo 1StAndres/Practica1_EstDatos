@@ -91,6 +91,13 @@ class Administrador(Investigador):
         with open("Password.txt", "a") as r:
             r.write(f"{id_nue} {contr_nue} {rol_nue} ") 
 
+    def Eliminar_usuario(self):        
+        id_eli = input("Ingrese identificacion del usuario a eliminar:")
+        with open("Password.txt", "r") as f:
+            lineas = f.readlines()
+            lineas_fil = [linea for linea in lineas if not linea.startswith(id_eli + " ")]
+        with open("Password.txt", "w") as f:
+            f.writelines(lineas_fil)    
     #entrabajo
     def generarInventariotxt(self,identificacion):
         with open(f"info_inventario{identificacion}","w") as fi:
