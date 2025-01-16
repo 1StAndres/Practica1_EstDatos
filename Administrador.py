@@ -140,7 +140,7 @@ class Administrador(Investigador):
     # Abre el archivo para escritura
         with open("InventarioGeneral.txt", "w") as fi:
             # Itera sobre la lista de empleados
-            empleado_actual = listaEmpleados.first()
+            empleado_actual = listaEmpleados.first().getData()
             while empleado_actual:
                 # Obtén la lista doble de equipos del empleado actual
                 lista_equipos = empleado_actual._lista_equipos
@@ -156,7 +156,7 @@ class Administrador(Investigador):
                     equipo_actual = equipo_actual.getNext()
                 
                 # Pasa al siguiente empleado
-                empleado_actual = listaEmpleados.getNext()
+                empleado_actual = listaEmpleados.first().getNext()
 
     def ordenarDoubleList(self, lista):
         # Implementación de un algoritmo de ordenamiento para una lista doblemente enlazada
