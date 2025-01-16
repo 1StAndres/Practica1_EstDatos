@@ -32,6 +32,7 @@ def menu_administrador():
             print("Eliminando usuarios...")
         elif opcion == "4":
             #En proceso
+            user_admin.Cambiar_contraseña()
             print("cambiando contraseñas")
         elif opcion == "5":
             user_admin.revisar_solicitudes_nuevo()

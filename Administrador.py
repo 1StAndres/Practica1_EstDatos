@@ -104,7 +104,26 @@ class Administrador(Investigador):
             line = r.readlines()
             line_fil = [linea for linea in line if linea.split()[1] != id_eli]  
         with open("Empleados.txt", "w") as r:
-            r.writelines(line_fil)          
+            r.writelines(line_fil)
+
+    def Cambiar_contraseña(self):
+        Id_contra_chance = input("Ingrese el id del usuario a cambiar contraseña:")
+        contra_chance = input("Escriba la nueva contraseña:")
+        with open("Password.txt", "r") as f:
+            lineas = f.readlines()
+
+    # Modificar la línea correspondiente al usuario
+        lineas_modificadas = []
+        for linea in lineas:
+            partes = linea.strip().split()
+            if partes[0] == Id_contra_chance: 
+                partes[1] = contra_chance 
+                lineas_modificadas.append(" ".join(partes) + "\n")
+            else:
+                lineas_modificadas.append(linea)
+
+        with open("Password.txt", "w") as f:
+            f.writelines(lineas_modificadas)                  
     #entrabajo
     def generarInventariotxt(self,identificacion):
         lista = DoubleList()
