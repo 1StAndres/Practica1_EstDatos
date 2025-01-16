@@ -68,5 +68,5 @@ class Investigador(Usuario):
         with open("estadoSolicitudes.txt", "w") as fi:
             estado_actual = self._estado_solicitudes.first()
             while estado_actual:
-                fi.write(estado_actual.getData().getFirst().getData() + estado_actual.getData().getFirst().getNext().getData() "\n")
+                fi.write(estado_actual.getData().getFirst().getData() + estado_actual.getData().getFirst().getNext().getData() + "\n")
                 estado_actual = estado_actual.getNext()
