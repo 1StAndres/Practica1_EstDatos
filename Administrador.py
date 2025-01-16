@@ -10,7 +10,7 @@ class Administrador(Investigador):
     solicitudes_nuevo = DoubleList()
     solicitudes_eliminar = DoubleList()
     control_de_cambio = DoubleList()
-
+    
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
     

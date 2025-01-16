@@ -91,13 +91,14 @@ def menu_investigador():
             Investigador.solicitar_eliminar(user_ejemplo,num_placa,justifi)
         elif opcion == "4":
             for estado in user_ejemplo.getEstado_solicitudes():
-                print("xd")
+                print(estado.first().getData())
+                print(estado.first().getNext().getData())
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
             Investigador.generarEquipotxt()
         elif opcion == "6":
             print("Generando un archivo txt con el estado de sus solicitudes...")
-            Investigador.generarEstadoSolicitudestxt()
+            Investigador.generarEstadoSolicitudestxt(user_ejemplo)
         elif opcion == "7":
             print("Saliendo del menú investigador...")
             break
