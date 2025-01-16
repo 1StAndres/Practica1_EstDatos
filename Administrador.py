@@ -10,7 +10,7 @@ class Administrador(Investigador):
     solicitudes_nuevo = DoubleList()
     solicitudes_eliminar = DoubleList()
     control_de_cambio = DoubleList()
-    
+
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
     
@@ -83,7 +83,7 @@ class Administrador(Investigador):
         apa = input("Numero del apartamento o casa (en caso de no aplicar omitir pulsando ENTER):")
         dir_user = Direccion()
         dir_user.setAll(calle, nomen, bar, ciu, edi, apa)
-        new_user = Usuario(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
+        new_user = Investigador(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
         with open("Empleados.txt", "a") as f:
             f.write(f"{new_user.__str__()}")
         contr_nue = input("Contraseña para el nuevo usuario:")

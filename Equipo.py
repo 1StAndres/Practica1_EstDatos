@@ -9,7 +9,6 @@ class Equipo:
         self._valor_de_compra = valor
         self._usuario = "None"
 
-
         Equipo.todos_los_equipos.addLast(self)
 
     def getNombre(self):
