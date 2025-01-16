@@ -2,7 +2,7 @@ from DoubleList import DoubleList
 from Usuario import Usuario
 
 class Investigador(Usuario):
-
+    lista_investigador = DoubleList()
     estado_solicitudes_general = DoubleList()
     solicitudes_nuevo = DoubleList()
     solicitudes_eliminar = DoubleList()
@@ -11,6 +11,7 @@ class Investigador(Usuario):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
         self._lista_equipos = DoubleList()
         self._archivo_equipos = f"{self.getNombre()} {self.getId()}.txt"
+        Investigador.lista_investigador.addLast(self)
 
     def cargar_equipos(self):
         """Carga los equipos del usuario"""
@@ -56,10 +57,10 @@ class Investigador(Usuario):
 
     # Entrabajo
     def generarEquipotxt(self):
-        with open("inventario.txt", "w") as fi:
+        with open(f"{self.getNombre()} {self.getId()}.txt", "a") as fi:
             equipo_actual = self._lista_equipos.first()
             while equipo_actual:
-                fi.write(equipo_actual.getData() + "\n")
+                fi.write(equipo_actual.getData().getNombre() + " " + equipo_actual.getData().getPlaca() + " " + str(equipo_actual.getData().getFecha()) + " " + equipo_actual.getData().getValor() + "\n")
                 equipo_actual = equipo_actual.getNext()
     
     def generarEstadoSolicitudestxt(self):

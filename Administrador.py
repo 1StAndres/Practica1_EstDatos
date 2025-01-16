@@ -20,6 +20,7 @@ class Administrador(Investigador):
                 cambio = str(solicitud.first().getNext().getData().getId()) + " " + str(solicitud.first().getData().getPlaca()) + " " + "Agrega" + ahora
                 Administrador.control_de_cambio.addLast(cambio)
                 solicitud.first().getNext().getData().getLista_equipos().addLast(solicitud.first().getData())
+                solicitud.first().getNext().getData().generarEquipotxt()
                 for pendiente in Investigador.estado_solicitudes_general:
                     if pendiente.first().getNext().getNext().getData() == solicitud.first().getNext().getData().getNombre():
                         if pendiente.first().getData() == solicitud.first().getData().getNombre():

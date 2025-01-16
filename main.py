@@ -1,7 +1,9 @@
-
-#A_empleados = open("Empleados.txt", "r")
-#print(A_empleados.read())
-#A_empleados.close()
+from Investigador import Investigador
+from Usuario import Usuario
+from Fecha import Fecha
+from Direccion import Direccion
+from Administrador import Administrador
+from Equipo import Equipo
 
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
@@ -74,12 +76,6 @@ def menu_investigador():
       print("Saliendo del menú investigador...")
     else:
       print("Opción no válida. Intente nuevamente.")
-from Investigador import Investigador
-from Usuario import Usuario
-from Fecha import Fecha
-from Direccion import Direccion
-from Administrador import Administrador
-from Equipo import Equipo
 
 def menu_administrador(user_admin):
     """Menú para usuarios con rol de administrador."""
@@ -118,7 +114,7 @@ def menu_administrador(user_admin):
             idInv = input("Ingrese el ID del investigador: ")
             user_admin.generarInventariotxt(idInv)
         elif opcion == "8":
-            user_admin.generarInventarioCompletotxt()
+            user_admin.generarInventarioCompletotxt(Investigador.lista_investigador)
         elif opcion == "9":
             user_admin.generarControlDeCambiostxt()
         elif opcion == "10":
