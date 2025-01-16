@@ -44,7 +44,9 @@ def menu_administrador():
             Administrador.generarInventariotxt(idInv)
         elif opcion == "8":
             print("Generando archivo de texto con la información de todo el inventario del centro de investigacion...")
-            Administrador.generarInventarioCompletotxt()
+            #listaEmpleados = DoubleList() faltan los empleados cargados del punto 1
+            #listaEmpleados.addLast()
+            #Administrador.generarInventarioCompletotxt(listaEmpleados)
         elif opcion == "9":
             print("Generando archivo de texto con el control de cambios")
             Administrador.generarControlDeCambiostxt()
@@ -91,13 +93,14 @@ def menu_investigador():
             user_ejemplo.solicitar_eliminar(num_placa,justifi)
         elif opcion == "4":
             for estado in user_ejemplo.getEstado_solicitudes():
-                print("xd")
+                print(estado.first().getData())
+                print(estado.first().getNext().getData())
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
             Investigador.generarEquipotxt()
         elif opcion == "6":
             print("Generando un archivo txt con el estado de sus solicitudes...")
-            Investigador.generarEstadoSolicitudestxt()
+            Investigador.generarEstadoSolicitudestxt(user_ejemplo)
         elif opcion == "7":
             print("Saliendo del menú investigador...")
             break

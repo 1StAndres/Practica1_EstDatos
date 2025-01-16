@@ -83,7 +83,7 @@ class Administrador(Investigador):
         apa = input("Numero del apartamento o casa (en caso de no aplicar omitir pulsando ENTER):")
         dir_user = Direccion()
         dir_user.setAll(calle, nomen, bar, ciu, edi, apa)
-        new_user = Usuario(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
+        new_user = Investigador(nombre_nue, id_nue, Fecha(dia_nue, mes_nue, año_nue), ciu_nue, tel_nue, email_nue, dir_user)
         with open("Empleados.txt", "a") as f:
             f.write(f"{new_user.__str__()}")
         contr_nue = input("Contraseña para el nuevo usuario:")
@@ -100,12 +100,58 @@ class Administrador(Investigador):
             f.writelines(lineas_fil)    
     #entrabajo
     def generarInventariotxt(self,identificacion):
-        with open(f"info_inventario{identificacion}","w") as fi:
-            fi.write()
+        lista = DoubleList()
+        with open("InventarioGeneral.txt","r")as archivo:
+            for linea in archivo:
+                if identificacion in linea:
+                    lista.addLast(linea)
+        with open(f"info_inventario{identificacion}.txt","w") as fi:
+            lineaActual = lista.first()
+            while lineaActual:               
+                fi.write(lineaActual.getData().split(identificacion, 1)[1].strip())
+                lineaActual = lineaActual.getNext()
     
-    def generarInventarioCompletotxt(self):
-        with open("InventarioGeneralcopy","w") as fi:
-            fi.write()
+    def generarInventarioCompletotxt(self, listaEmpleados):
+    # Abre el archivo para escritura
+        with open("InventarioGeneral.txt", "w") as fi:
+            # Itera sobre la lista de empleados
+            empleado_actual = listaEmpleados.first()
+            while empleado_actual:
+                # Obtén la lista doble de equipos del empleado actual
+                lista_equipos = empleado_actual._lista_equipos
+                
+                # Ordenar la lista doblemente enlazada in-place según el último número de cada cadena
+                if lista_equipos.first() and lista_equipos.first().getNext():
+                    self.ordenarDoubleList(lista_equipos)
+                
+                # Escribir los datos ordenados de la lista en el archivo
+                equipo_actual = lista_equipos.first()
+                while equipo_actual:
+                    fi.write(equipo_actual.getData() + "\n")
+                    equipo_actual = equipo_actual.getNext()
+                
+                # Pasa al siguiente empleado
+                empleado_actual = listaEmpleados.getNext()
+
+    def ordenarDoubleList(self, lista):
+        # Implementación de un algoritmo de ordenamiento para una lista doblemente enlazada
+        cambiado = True
+        while cambiado:
+            cambiado = False
+            actual = lista.first()
+            while actual and actual.getNext():
+                siguiente = actual.getNext()
+                # Comparar el último número de las cadenas
+                valor_actual = int(actual.getData().split()[-1])
+                valor_siguiente = int(siguiente.getData().split()[-1])
+                if valor_actual > valor_siguiente:
+                    # Intercambiar los valores de los nodos
+                    actual_data = actual.getData()
+                    siguiente_data = siguiente.getData()
+                    actual.setData(siguiente_data)
+                    siguiente.setData(actual_data)
+                    cambiado = True
+                actual = siguiente
     
     def generarControlDeCambiostxt(self):
         with open("Control_de_cambios.txt", "w") as fi:
@@ -115,5 +161,13 @@ class Administrador(Investigador):
                 cambio_actual = cambio_actual.getNext()
     
     def generarSolicitudesPendientestxt(self):
-        with open("info_SolicitudesPendientes","w") as fi:
-            fi.write()
+        with open("info_SolicitudesPendientes", "w") as fi:
+            solicitud_actual = self.solicitudes_nuevo.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
+
+            solicitud_actual = self.solicitudes_eliminar.first()
+            while solicitud_actual:
+                fi.write(solicitud_actual.getData() + "\n")
+                solicitud_actual = solicitud_actual.getNext()
