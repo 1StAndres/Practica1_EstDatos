@@ -22,17 +22,16 @@ def menu_administrador():
         print("11. Salir")
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
-            user_admin.cargar_equipos()
             print("Consultando información...")
+            user_admin.cargar_equipos()
         elif opcion == "2":
             user_admin.Registrar_Usuario()
             print("Registrando Usuario...")
         elif opcion == "3":
-            #falta
             user_admin.Eliminar_usuario()
             print("Eliminando usuarios...")
         elif opcion == "4":
-            #falta
+            #En proceso
             print("cambiando contraseñas")
         elif opcion == "5":
             user_admin.revisar_solicitudes_nuevo()
@@ -73,8 +72,8 @@ def menu_investigador():
         opcion = input("Seleccione una opción: ")
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
-            user_ejemplo.cargar_equipos()
             print("Consultando información...")
+            user_ejemplo.cargar_equipos()
         elif opcion == "2":
             nombre = input("Nombre del equipo:")
             placa = input("ingrese numero de placa del equipo:")
