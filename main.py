@@ -43,7 +43,9 @@ def menu_administrador():
             Administrador.generarInventariotxt(idInv)
         elif opcion == "8":
             print("Generando archivo de texto con la información de todo el inventario del centro de investigacion...")
-            Administrador.generarInventarioCompletotxt()
+            #listaEmpleados = DoubleList() faltan los empleados cargados del punto 1
+            #listaEmpleados.addLast()
+            #Administrador.generarInventarioCompletotxt(listaEmpleados)
         elif opcion == "9":
             print("Generando archivo de texto con el control de cambios")
             Administrador.generarControlDeCambiostxt()
