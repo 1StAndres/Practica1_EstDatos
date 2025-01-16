@@ -31,7 +31,6 @@ def menu_administrador():
             user_admin.Eliminar_usuario()
             print("Eliminando usuarios...")
         elif opcion == "4":
-            #En proceso
             user_admin.Cambiar_contraseña()
             print("cambiando contraseñas")
         elif opcion == "5":
@@ -74,7 +73,7 @@ def menu_investigador():
         # Cada quien modifica lo que le toque para que el menu lo haga
         if opcion == "1":
             print("Consultando información...")
-            user_ejemplo.cargar_equipos()
+            user_inves.cargar_equipos()
         elif opcion == "2":
             nombre = input("Nombre del equipo:")
             placa = input("ingrese numero de placa del equipo:")
@@ -84,15 +83,15 @@ def menu_investigador():
             fecha = Fecha(dia, mes, año)
             valor = input("valor compra del equipo:")
             equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
-            user_ejemplo.solicitar_nuevo(equipo_nuevo)
+            user_inves.solicitar_nuevo(equipo_nuevo)
             print("Solicitando agregar nuevos equipos...")
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
             num_placa = input("ingrese numero de placa del equipo:")
             justifi = input("ingrese una justificacion:")
-            user_ejemplo.solicitar_eliminar(num_placa,justifi)
+            user_inves.solicitar_eliminar(num_placa,justifi)
         elif opcion == "4":
-            for estado in user_ejemplo.getEstado_solicitudes():
+            for estado in user_inves.getEstado_solicitudes():
                 print(estado.first().getData())
                 print(estado.first().getNext().getData())
         elif opcion == "5":
@@ -100,21 +99,13 @@ def menu_investigador():
             Investigador.generarEquipotxt()
         elif opcion == "6":
             print("Generando un archivo txt con el estado de sus solicitudes...")
-            Investigador.generarEstadoSolicitudestxt(user_ejemplo)
+            Investigador.generarEstadoSolicitudestxt(user_inves)
         elif opcion == "7":
             print("Saliendo del menú investigador...")
             break
         else:
             print("Opción no válida. Intente nuevamente.")
 
-#usuario de ejemplo
-user_ejemplo = Investigador("Juan-Perez", "24567898", Fecha("12", "10", "1980"), "Medellin", "3003233234", "juanperez@edl.edu.co", Direccion())
-#print(user_ejemplo)
-
-direc = Direccion()
-direc.setAll("tr45", "4S-73", "Poblado", "Medellin", "null", "null")
-user_admin = Administrador("Camila-Jimenez", "2345902", Fecha("15", "09", "1985"), "Cali", "3003234567", "camilajimenez@edl.edu.co", direc)
-print(user_admin)
 #inicio del sistema
 #lee archivos empleados y password
 with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as arc_password:
@@ -141,13 +132,27 @@ with open("Empleados.txt", "r") as arc_empleados, open("Password.txt", "r") as a
                 if contraseña == contraseñas[identificacion]:
                     print("Acceso permitido :D")
                     fallas=0
+                    #carga informacion del usuario ingresado
                     #verificacion si es investigador o administrador
                     if rangos[identificacion] == "investigador":
                         print("Bienvenido investigador")
-                        #punto numero 3
+                        for linea in arc_empleados:
+                            datos = linea.strip().split()
+                            if datos[1] == identificacion:
+                                direccion = Direccion()
+                                direccion.setAll(datos[8], datos[9], datos[10], datos[11], datos[12], datos[13])
+                                user_inves = Investigador(datos[0], int(datos[1]),Fecha(int(datos[2]), int(datos[3]), int(datos[4])), datos[5], datos[6], datos[7], direccion)
+                        print(user_inves)    
                         menu_investigador()
                     else:
                         print("Bienvenido administrador")
+                        for linea in arc_empleados:
+                            datos = linea.strip().split()
+                            if datos[1] == identificacion:
+                                direccion = Direccion()
+                                direccion.setAll(datos[8], datos[9], datos[10], datos[11], datos[12], datos[13])
+                                user_admin = Administrador(datos[0], int(datos[1]),Fecha(int(datos[2]), int(datos[3]), int(datos[4])), datos[5], datos[6], datos[7], direccion)
+                        print(user_admin)
                         menu_administrador()
                     break
                 else:
