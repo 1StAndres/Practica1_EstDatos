@@ -24,4 +24,7 @@ class Equipo:
         return self._valor_de_compra
     
     def getUsuario(self):
-        return self._usuario     
+        return self._usuario 
+
+    def setUsuario(self, usuario):
+        self._usuario = usuario    

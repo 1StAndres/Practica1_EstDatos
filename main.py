@@ -4,6 +4,7 @@ from Fecha import Fecha
 from Direccion import Direccion
 from Administrador import Administrador
 from Equipo import Equipo
+from DoubleList import DoubleList
 
 def menu_administrador():
     """Menú para usuarios con rol de administrador."""
@@ -36,6 +37,7 @@ def menu_administrador():
         elif opcion == "5":
             user_admin.revisar_solicitudes_nuevo()
         elif opcion == "6":
+            print("Abriendo solicitudes para eliminar")
             user_admin.revisar_solicitudes_eliminar()
         elif opcion == "7":
             print("Generando un archivo txt con la información del inventario de un investigador en específico")
@@ -48,8 +50,13 @@ def menu_administrador():
             print("Generando archivo de texto con el control de cambios")
             Administrador.generarControlDeCambiostxt()
         elif opcion == "10":
-            print("Generando archivo de texto para cada tipo de solicitud pendiente por responder...")
-            Administrador.generarSolicitudesPendientestxt()
+            respuesta = input("¿Qué desea, el txt de eliminar o agregar? ")
+            if respuesta == "eliminar":
+                user_admin.generarSolicitudesEliminarPendientesTxt
+            if respuesta == "agregar":
+                user_admin.generarSolicitudesAgregarPendientesTxt
+            else:
+                print("Opción no válida. Intente nuevamente.")
         elif opcion == "11":
             print("Saliendo del menú administrador...")
             break
@@ -82,16 +89,28 @@ def menu_investigador():
             fecha = Fecha(dia, mes, año)
             valor = input("valor compra del equipo:")
             equipo_nuevo = Equipo(nombre, placa, fecha, valor) #objeto del parametro de solcitar_nuevo
+            equipo_nuevo.setUsuario(user_ejemplo)
             user_ejemplo.solicitar_nuevo(equipo_nuevo)
+            #solicitud = DoubleList()
+            #solicitud.addLast(equipo_nuevo)
+            #solicitud.addLast(user_ejemplo)
+            #Administrador.solicitudes_nuevo.addLast(solicitud)
         elif opcion == "3":
             print("Por favor digite numero de placa y agregue una justificacion para eliminar equipos de su inventario...")
-            num_placa = input("ingrese numero de placa del equipo:")
-            justifi = input("ingrese una justificacion:")
-            user_ejemplo.solicitar_eliminar(num_placa,justifi)
+            numero_placa = input("ingrese numero de placa del equipo:")
+            justificacion = input("ingrese una justificacion:")
+            user_ejemplo.solicitar_eliminar(numero_placa,justificacion)
+            #solicitud = DoubleList()
+            #solicitud.addLast(str(numero_placa))
+            #solicitud.addLast(justificacion)
+            #solicitud.addLast(str(user_ejemplo.getId()))
+            #solicitud.addLast(user_ejemplo)
+            #Administrador.solicitudes_eliminar.addFirst(solicitud)
         elif opcion == "4":
-            for estado in user_ejemplo.getEstado_solicitudes():
-                print(estado.first().getData())
-                print(estado.first().getNext().getData())
+            for estado in Investigador.estado_solicitudes_general:
+                if user_ejemplo.getNombre() == estado.first().getNext().getNext().getData():
+                    print(estado.first().getData())
+                    print(estado.first().getNext().getData())
         elif opcion == "5":
             print("Generando un archivo txt con la información de su inventario...")
             Investigador.generarEquipotxt()

@@ -3,46 +3,47 @@ from Investigador import Investigador
 from datetime import datetime
 from Direccion import Direccion
 from Fecha import Fecha
-from Usuario import Usuario 
 
 class Administrador(Investigador):
 
-    solicitudes_nuevo = DoubleList()
-    solicitudes_eliminar = DoubleList()
     control_de_cambio = DoubleList()
 
     def __init__(self, nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir):
         super().__init__(nombre, id, fecha_nacimiento, ciudad_nacimiento, tel, email, dir)
     
     def revisar_solicitudes_nuevo(self):
-        #falta usar el ahora para el formato
+        print("entró a revisar_solicitudes_nuevo")
+        if Investigador.solicitudes_nuevo.isEmpty():
+            print("Lista vacía")
+        else:
+            print("Lista llena")
         ahora = datetime.now().strftime('%d %m %Y %H %M %S')
-        for solicitud in Administrador.solicitudes_nuevo:
+        for solicitud in Investigador.solicitudes_nuevo:
             print("El Investigador:", solicitud.first().getNext().getData().getNombre(), "quiere solitictar un nuevo equipo: ", solicitud.first().getData().getNombre(), "con valor: ", str(solicitud.first().getData().getValor()))
             resultado = input("A continuación escriba Aprobado o Desaprobado")
             if resultado == "Aprobado":
                 cambio = str(solicitud.first().getNext().getData().getId()) + " " + str(solicitud.first().getData().getPlaca()) + " " + "Agrega" + ahora
                 Administrador.control_de_cambio.addLast(cambio)
                 solicitud.first().getNext().getData().getLista_equipos().addLast(solicitud.first().getData())
-                for pendiente in solicitud.first().getNext().getData().getEstado_solicitudes():
-                    if pendiente.first().getData() == solicitud.first().getData().getNombre():
-                        pendiente.removeLast()
-                        pendiente.addLast("Aprobado (Agregar)")
+                for pendiente in Investigador.estado_solicitudes_general:
+                    if pendiente.first().getNext().getNext().getData() == solicitud.first().getNext().getData().getNombre():
+                        if pendiente.first().getData() == solicitud.first().getData().getNombre():
+                            pendiente.removeLast()
+                            pendiente.addLast("Aprobado (Agregar)")
                 print("Solicitud aprobada")
-                #poner a lo mejor un atributo más para investigador, que se vacíe cada vez 
-                #que se printee un mensaje indicandole al inves el resultado de su solicitud
-            if resultado == "Desaprobado":
-                for pendiente in solicitud.first().getNext().getData().getEstado_solicitudes():
-                    if pendiente.first().getData() == solicitud.first().getData().getNombre():
-                        pendiente.removeLast()
-                        pendiente.addLast("Desaprobado (Agregar)")
+            elif resultado == "Desaprobado":
+                for pendiente in Investigador.estado_solicitudes_general:
+                    if pendiente.first().getNext().getNext().getData() == solicitud.first().getNext().getData().getNombre():
+                        if pendiente.first().getData() == solicitud.first().getData().getNombre():
+                            pendiente.removeLast()
+                            pendiente.addLast("Desaprobado (Agregar)")
                 print("Solicitud desaprobada")
             else:
                 print("Por favor copie Aprobado o Desaprobado")
 
     def revisar_solicitudes_eliminar(self):
         ahora = datetime.now().strftime('%d %m %Y %H %M %S')
-        for solicitud in Administrador.solicitudes_eliminar:
+        for solicitud in Investigador.solicitudes_eliminar:
             print("Equipo con número de placa:", solicitud.first().getData(), ", Razón para eliminarlo: ", solicitud.first().getNext().getData())
             resultado = input("A continuación escriba Aprobado o Desaprobado")
             if resultado == "Aprobado":
@@ -51,18 +52,20 @@ class Administrador(Investigador):
                 for equipo in solicitud.first().getNext().getNext().getNext().getData().getLista_equipos():
                     if str(equipo.getPlaca()) == solicitud.first().getData():
                         solicitud.first().getNext().getNext().getNext().getData().getLista_equipos().remove(equipo)
-                for pendiente in solicitud.first().getNext().getNext().getNext().getData().getEstado_solicitudes():
-                    if pendiente.first().getData() == solicitud.first().getData():
-                        pendiente.removeLast()
-                        pendiente.addLast("Desaprobado (Eliminar)")
+                for pendiente in Investigador.estado_solicitudes_general:
+                    if pendiente.first().getNext().getNext().getData() == solicitud.first().getNext().getNext().getNext().getData().getNombre():
+                        if pendiente.first().getData() == solicitud.first().getData():
+                            pendiente.removeLast()
+                            pendiente.addLast("Desaprobado (Eliminar)")
                 print("Solicitued aprobada")
                 #informar al investigador falta
             if resultado == "Desaprobado":
-                for pendiente in solicitud.first().getNext().getNext().getNext().getData().getEstado_solicitudes():
-                    if pendiente.first().getData() == solicitud.first().getData():
-                        pendiente.removeLast()
-                        pendiente.addLast("Desaprobado (Eliminar)")
-                print("Solicitud desaprobada")#lo puse porque me marcaba error y no me dejaba correr investigador, si necesitan cambiar sientanse libre de hacerlo
+                for pendiente in Investigador.estado_solicitudes_general:
+                    if pendiente.first().getNext().getNext().getData() == solicitud.first().getNext().getNext().getNext().getData().getNombre():
+                        if pendiente.first().getData() == solicitud.first().getData():
+                            pendiente.removeLast()
+                            pendiente.addLast("Desaprobado (Eliminar)")
+                print("Solicitud desaprobada")
             else:
                 print("Por favor copie Aprobado o Desaprobado")
     
@@ -148,19 +151,22 @@ class Administrador(Investigador):
     
     def generarControlDeCambiostxt(self):
         with open("Control_de_cambios.txt", "w") as fi:
-            cambio_actual = self.control_de_cambio.first()
+            cambio_actual = Administrador.control_de_cambio.first()
             while cambio_actual:
                 fi.write(cambio_actual.getData() + "\n")
                 cambio_actual = cambio_actual.getNext()
     
-    def generarSolicitudesPendientestxt(self):
-        with open("info_SolicitudesPendientes", "w") as fi:
-            solicitud_actual = self.solicitudes_nuevo.first()
+    def generarSolicitudesAgregarPendientesTxt(self):
+        with open("Solicitudes_agregar.txt", "w") as fi:
+            solicitud_actual = Investigador.solicitudes_nuevo.first()
             while solicitud_actual:
                 fi.write(solicitud_actual.getData() + "\n")
                 solicitud_actual = solicitud_actual.getNext()
 
-            solicitud_actual = self.solicitudes_eliminar.first()
+    def generarSolicitudesEliminarPendientesTxt(self):
+        with open("“Solicitudes_eliminar.txt", "w") as fi:
+            solicitud_actual = Investigador.solicitudes_eliminar.first()
             while solicitud_actual:
                 fi.write(solicitud_actual.getData() + "\n")
                 solicitud_actual = solicitud_actual.getNext()
+
