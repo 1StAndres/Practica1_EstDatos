@@ -102,7 +102,7 @@ class Administrador(Investigador):
             ##Elimina usuario en empleados txt
         with open("Empleados.txt","r") as r:
             line = r.readlines()
-            line_fil = [linea for linea in line if not linea.startswith(id_eli + " ")]  
+            line_fil = [linea for linea in line if linea.split()[1] != id_eli]  
         with open("Empleados.txt", "w") as r:
             r.writelines(line_fil)          
     #entrabajo
