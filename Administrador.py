@@ -124,13 +124,12 @@ class Administrador(Investigador):
         with open("Password.txt", "w") as f:
             f.writelines(lineas_modificadas)                  
     #entrabajo
-    def generarInventariotxt(self,identificacion):
+    def generarInventariotxt(self,identificacion,lista1):
         lista = DoubleList()
-        with open("InventarioGeneral.txt","r")as archivo:
-            for linea in archivo:
-                if identificacion in linea:
-                    lista.addLast(linea)
-        with open(f"info_inventario{identificacion}.txt","w") as fi:
+        for linea in lista1:
+            if identificacion in linea:
+                lista.addLast(linea)
+        with open(f"{self.getNombre()} {identificacion}.txt","w") as fi:
             lineaActual = lista.first()
             while lineaActual:               
                 fi.write(lineaActual.getData().split(identificacion, 1)[1].strip())

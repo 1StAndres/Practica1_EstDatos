@@ -112,7 +112,13 @@ def menu_administrador(user_admin):
             user_admin.revisar_solicitudes_eliminar()
         elif opcion == "7":
             idInv = input("Ingrese el ID del investigador: ")
-            user_admin.generarInventariotxt(idInv)
+            for linea in empleados:
+                    datos = linea.strip().split()
+                    if datos[1] == identificacion:
+                        direccion = Direccion()
+                        direccion.setAll(*datos[8:14])
+                        user_inves = Investigador(datos[0], datos[1], Fecha(*datos[2:5]), datos[5], datos[6], datos[7], direccion)
+            user_admin.generarInventariotxt(idInv,us)
         elif opcion == "8":
             user_admin.generarInventarioCompletotxt(Investigador.lista_investigador)
         elif opcion == "9":
